@@ -12,7 +12,17 @@ eventListeners();
 function eventListeners() { // tüm eventListenerlar
     form.addEventListener("submit", addTodo);
     document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
+    secondCardBody.addEventListener("click", deleteTodo);
 
+}
+
+function deleteTodo(e) {
+    if (e.target.className === "fa fa-remove") { // Silme işlemi
+        console.log("Silme işlemi");
+        e.target.parentElement.parentElement.remove();
+        showAlert("success", "Todo Başarı ile silindi.");
+    }
+    // console.log(e.target);
 }
 
 function loadAllTodosToUI() {
