@@ -19,15 +19,27 @@ function eventListeners() { // tüm eventListenerlar
 function deleteTodo(e) {
     if (e.target.className === "fa fa-remove") { // Silme işlemi
         console.log("Silme işlemi");
+        deleteTodoFromStorage(e.target.parentElement.parentElement.textContent);
         e.target.parentElement.parentElement.remove();
         showAlert("success", "Todo Başarı ile silindi.");
     }
     // console.log(e.target);
 }
 
+function deleteTodoFromStorage(deleteTodo) {
+    let todos = getTodosFromStorage();
+    todos.forEach(function(todo,index) {
+        if (todo === deleteTodo) {
+            todos.splice(index, 1); // arrayden bir element silmek
+        }
+    });
+
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
 function loadAllTodosToUI() {
     let todos = getTodosFromStorage();
-    todos.forEach(function (todo) {
+    todos.forEach(function(todo) {
         addTodoUI(todo);
     });
 }
