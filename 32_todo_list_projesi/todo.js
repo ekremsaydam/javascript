@@ -14,14 +14,29 @@ function eventListeners() { // tüm eventListenerlar
     document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
     secondCardBody.addEventListener("click", deleteTodo);
     filter.addEventListener("keyup", filterTodos);
+    clearButton.addEventListener("click", clearAllTodos);
 
+}
+
+function clearAllTodos() {
+    if (confirm("Tümünü silmek istediğinize emin misiniz?")) {
+        // Todoları arayüzden kaldırma
+        // todoList.innerHTML = ""; // Yavaş
+        while (todoList.firstElementChild != null) {
+            todoList.removeChild(todoList.firstElementChild);
+        }
+
+        localStorage.removeItem("todos");
+
+        showAlert("success", "Todo List tamamen silindi.");
+    }
 }
 
 function filterTodos(e) {
     // console.log(e.target.value);
     const filterValue = e.target.value.toLowerCase();
     const listItems = document.querySelectorAll(".list-group-item");
-    listItems.forEach(function (listitem) {
+    listItems.forEach(function(listitem) {
         const text = listitem.textContent.toLocaleLowerCase();
         if (text.indexOf(filterValue) === -1) {
             listitem.setAttribute("style", "display:none !important");
