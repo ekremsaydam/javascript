@@ -13,7 +13,22 @@ function eventListeners() { // tüm eventListenerlar
     form.addEventListener("submit", addTodo);
     document.addEventListener("DOMContentLoaded", loadAllTodosToUI);
     secondCardBody.addEventListener("click", deleteTodo);
+    filter.addEventListener("keyup", filterTodos);
 
+}
+
+function filterTodos(e) {
+    // console.log(e.target.value);
+    const filterValue = e.target.value.toLowerCase();
+    const listItems = document.querySelectorAll(".list-group-item");
+    listItems.forEach(function (listitem) {
+        const text = listitem.textContent.toLocaleLowerCase();
+        if (text.indexOf(filterValue) === -1) {
+            listitem.setAttribute("style", "display:none !important");
+        } else {
+            listitem.setAttribute("style", "display:block");
+        }
+    });
 }
 
 function deleteTodo(e) {
@@ -28,7 +43,7 @@ function deleteTodo(e) {
 
 function deleteTodoFromStorage(deleteTodo) {
     let todos = getTodosFromStorage();
-    todos.forEach(function(todo,index) {
+    todos.forEach(function(todo, index) {
         if (todo === deleteTodo) {
             todos.splice(index, 1); // arrayden bir element silmek
         }
