@@ -1,0 +1,16 @@
+[{
+        "name": "Zeki Koşar",
+        "depoatment": "Bilişim",
+        "salary": 3500
+    },
+    {
+        "name": "Ali ZIPLAR",
+        "depoatment": "Bilişim",
+        "salary": 4000
+    },
+    {
+        "name": "Kaan Damar",
+        "depoatment": "Pazarlama",
+        "salary": 5000
+    }
+]
