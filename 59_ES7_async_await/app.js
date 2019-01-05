@@ -23,23 +23,37 @@
 // test("Merhaba").then(response => console.log(response));
 
 
-async function testData(data) {
-    let promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (typeof data == "string") {
-                resolve(data);
-            } else {
-                reject(new Error("Lütfen string bir değer giriniz"));
-            }
-        }, 2000);
-    });
+// async function testData(data) {
+//     let promise = new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (typeof data == "string") {
+//                 resolve(data);
+//             } else {
+//                 reject(new Error("Lütfen string bir değer giriniz"));
+//             }
+//         }, 2000);
+//     });
 
-    const response = await promise;
+//     const response = await promise;
 
-    return response;
+//     return response;
+// }
+
+
+// testData(1)
+//     .then(data => console.log(data))
+//     .catch(err => console.error(err));
+
+async function getCurrency(url) {
+    const response = await fetch(url); // Response Object
+    console.log(response);
+
+    const data = await response.json(); // Json Object
+
+    return data;
+
+
 }
 
-
-testData(1)
-    .then(data => console.log(data))
-    .catch(err => console.error(err));
+getCurrency("https://api.exchangeratesapi.io/latest")
+    .then(res => console.log(res));
