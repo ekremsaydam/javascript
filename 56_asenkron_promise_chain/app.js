@@ -13,8 +13,12 @@ function getData(data) { //promise Objesi döndüren fonksion
 }
 
 // console.log(getData("Merhaba"));
-getData(1).then(function(response) {
-    console.log(response);
-}).catch(function(err) {
-    console.error(err);
-});
+// getData(1).then(function(response) {
+//     console.log(response);
+// }).catch(function(err) {
+//     console.error(err);
+// });
+
+getData("Merhaba")
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
